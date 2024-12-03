@@ -410,6 +410,8 @@ BOOL CFolder::LoadFolder(CFolderTree *tree, char *name, ui32 namelen, ui64 clust
 	name[namelen+3] = '\0';
 
 	// "name" now contains something like "C:\Windows\System\*.*"
+	constexpr auto IO_REPARSE_TAG_SYMBOLIC_LINK = 0;
+	constexpr auto MAX_REPARSE_SIZE = (16 * 1024);
 
 	handle = FindFirstFile(name, &finddata);
 	gotfile = (handle != INVALID_HANDLE_VALUE);
